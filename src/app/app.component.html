@@ -1,0 +1,53 @@
+<ion-app [class]="currentMode">
+  <ion-header>
+    <ion-toolbar [color]="currentMode">
+      <ion-buttons slot="start">
+        <a routerLink="/home">
+          <ion-img
+            src="/assets/app-icons/auxilium-logo.png"
+            class="navbar-logo"
+            alt="Test Image"
+          ></ion-img>
+        </a>
+      </ion-buttons>
+      
+      <ion-buttons slot="end">
+        <!-- <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode($event as CustomEvent<any>)"></ion-toggle> -->
+          <li>
+            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/discover">Discover</a>
+            <!-- This must be an optional link -->
+            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/join">Join</a>
+            
+            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/userproj">Your Project</a>
+            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/createproj">Create</a>
+            
+            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/aboutus">About Us</a>
+          </li>
+          <ion-button (click)="changeTheme()" expand="block" fill="clear" shape="round">
+            <ion-icon [name]="currentIconName" color="medium"></ion-icon>
+          </ion-button>
+          <ion-button color="success" routerLink="/login" expand="block" fill="solid" shape="round">
+          Login
+        </ion-button>
+        <!-- <ion-button>
+          <ion-icon name="settings"></ion-icon>
+        </ion-button> -->
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Sub Header -->
+  <!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>Discover Projects</ion-title>
+
+      <ion-input type="text" placeholder="Awesome Input"></ion-input>
+      
+      <ion-button expand="block" fill="clear" shape="round">
+        Search
+      </ion-button>
+    </ion-toolbar>
+  </ion-header> -->
+  
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
