@@ -31,7 +31,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss", "./node_modules/tailwindcss/dist/base.css", "./node_modules/tailwindcss/dist/components.css", "./node_modules/tailwindcss/dist/utilities.css"],
+            "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": []
           },
           "configurations": {
