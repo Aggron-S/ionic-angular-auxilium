@@ -6,3 +6,22 @@ ion-row {
 ion-col {
   margin: 0 40px;
 }
+
+ion-text.project-funding-details {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+
+  p {
+    font-size: 13px;
+    .project-funding-details-title {
+      font-weight: 900;
+    }
+  }
+}
+
+ion-card {
+  .card-text {
+    overflow: hidden;
+  }
+}

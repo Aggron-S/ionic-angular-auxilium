@@ -1,53 +1,143 @@
-<ion-app [class]="currentMode">
-  <ion-header>
-    <ion-toolbar [color]="currentMode">
-      <ion-buttons slot="start">
+<ion-app>
+  <!-- Side Menu (to only show if small screen) -->
+  <ion-menu side="end" contentId="side-menu" swipe-gesture="false">
+    <ion-header>
+      <ion-toolbar [class]="currentMode">
+        <ion-buttons slot="start" class="ion-margin-start">
+          <a routerLink="/home">
+            <ion-img
+              src="/assets/app-icons/auxilium-logo.png"
+              class="navbar-logo"
+              alt="auxilium-logo"
+            ></ion-img>
+          </a>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- PUT MANY ngTemplate if its possible, kesa sa maglagay ka palagi ng inline ngIf, redundant as fuck -->
+    <ion-content class="ion-padding">
+      <!-- Side Menu Content -->
+      <li>
+        <a [ngClass]="['ion-padding', currentMode]" routerLink="/discover">Discover</a>
+
+        <!-- if not authenticated -->
+        <ng-container *ngIf="!isAuthenticated; else authenticated">
+          <a [ngClass]="['ion-padding', currentMode]" routerLink="/join" *ngIf="!isAuthenticated">Join</a>
+        </ng-container>
+
+        <!-- if authenticated -->
+        <ng-template #authenticated>
+          <a [ngClass]="['ion-padding', currentMode]" routerLink="/userproj" *ngIf="isAuthenticated">Your Project</a>
+          <a [ngClass]="['ion-padding', currentMode]" routerLink="/createproj" *ngIf="isAuthenticated">Create</a>
+        </ng-template>
+        
+        <a [ngClass]="['ion-padding', currentMode]" routerLink="/aboutus">About Us</a>
+      </li>
+
+      <!-- Change Theme Button -->
+      <ion-button (click)="changeTheme()" expand="block" fill="clear" shape="round">
+        <ion-icon [name]="currentIconName"></ion-icon>
+      </ion-button>
+
+      <!-- Login Button -->
+      <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true" *ngIf="!isAuthenticated">
+        Login
+      </ion-button>
+
+      <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true" *ngIf="isAuthenticated">
+        User
+      </ion-button>
+      <ion-buttons slot="end">
+
+      </ion-buttons>
+    </ion-content>
+  </ion-menu>
+
+  <ion-header class="ion-no-border">
+    <ion-toolbar [class]="currentMode">
+      <ion-buttons slot="start" class="ion-margin-start">
         <a routerLink="/home">
           <ion-img
             src="/assets/app-icons/auxilium-logo.png"
             class="navbar-logo"
-            alt="Test Image"
+            alt="auxilium-logo"
           ></ion-img>
         </a>
       </ion-buttons>
       
-      <ion-buttons slot="end">
-        <!-- <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode($event as CustomEvent<any>)"></ion-toggle> -->
+      <!-- if small screen -->
+      <div class="ion-page" id="side-menu">
+        <ion-toolbar [class]="currentMode">
+          <ng-container *ngIf="isSmallScreen; else notSmallScreen">
+            <ion-buttons slot="end">
+              <!-- Change Theme Button -->
+              <ion-button (click)="changeTheme()" expand="block" fill="clear" shape="round">
+                <ion-icon [name]="currentIconName"></ion-icon>
+              </ion-button>
+  
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+          </ng-container>
+        </ion-toolbar>
+      </div>
+
+      <!-- if not small screen -->
+      <ng-template #notSmallScreen>
+        <ion-buttons class="ion-margin-end" slot="end">
           <li>
-            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/discover">Discover</a>
-            <!-- This must be an optional link -->
-            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/join">Join</a>
+            <a [ngClass]="['ion-padding', currentMode]" routerLink="/discover">Discover</a>
+  
+            <!-- if not authenticated -->
+            <ng-container *ngIf="!isAuthenticated; else authenticated">
+              <a [ngClass]="['ion-padding', currentMode]" routerLink="/join" *ngIf="!isAuthenticated">Join</a>
+            </ng-container>
             
-            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/userproj">Your Project</a>
-            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/createproj">Create</a>
             
-            <a [ngClass]="['ion-padding', currentNavTextMode]" routerLink="/aboutus">About Us</a>
+            <a [ngClass]="['ion-padding', currentMode]" routerLink="/aboutus">About Us</a>
           </li>
+  
+          <!-- Change Theme Button -->
           <ion-button (click)="changeTheme()" expand="block" fill="clear" shape="round">
-            <ion-icon [name]="currentIconName" color="medium"></ion-icon>
+            <ion-icon [name]="currentIconName"></ion-icon>
           </ion-button>
-          <ion-button color="success" routerLink="/login" expand="block" fill="solid" shape="round">
-          Login
-        </ion-button>
-        <!-- <ion-button>
-          <ion-icon name="settings"></ion-icon>
-        </ion-button> -->
-      </ion-buttons>
+  
+          <!-- Login Button -->
+          <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true">
+            Login
+          </ion-button>
+  
+        </ion-buttons>
+      </ng-template>
+    </ion-toolbar>
+
+    <!-- Sub Header -->
+    <ion-toolbar class="sub-header" *ngIf="shouldDisplaySubHeader">
+      <ion-title class="sub-header-title" color="light">Discover Projects</ion-title>
+
+      <!-- if small screen -->
+      <ng-container *ngIf="isSmallScreen; else notSmallScreen">
+        <ion-buttons slot="end">
+          <!-- Change Theme Button -->
+          <ion-button (click)="searchProj()" expand="block" fill="clear" shape="round" color="light">
+            <ion-icon size="large" name="search-outline"></ion-icon>
+          </ion-button>
+  
+        </ion-buttons>
+      </ng-container>
+
+      <!-- if not small screen -->
+      <ng-template #notSmallScreen>
+        <ion-buttons slot="end" class="ion-margin-end">
+          <ion-input class="ion-margin-end search-button" type="text" [color]="currentMode" fill="outline" shape="round"></ion-input>
+          <ion-button (click)="searchProj()" color="dark" expand="block" fill="solid" shape="round">
+            Search
+          </ion-button>
+        </ion-buttons>
+      </ng-template>
+  
     </ion-toolbar>
   </ion-header>
-
-  <!-- Sub Header -->
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>Discover Projects</ion-title>
-
-      <ion-input type="text" placeholder="Awesome Input"></ion-input>
-      
-      <ion-button expand="block" fill="clear" shape="round">
-        Search
-      </ion-button>
-    </ion-toolbar>
-  </ion-header> -->
   
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet [class]="currentMode"></ion-router-outlet>
 </ion-app>

@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
+import { Platform } from '@ionic/angular';
 import Swiper from 'swiper';
 import { StateService } from '../shared/state.service';
 interface CardData {
@@ -11,12 +12,13 @@ interface CardData {
   templateUrl: './discover-content.page.html',
   styleUrls: ['./discover-content.page.scss'],
 })
-export class DiscoverContentPage implements OnInit, AfterViewInit {
+export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
   cardData: CardData = { data: [] };
   progress = 10
-  currentTextMode! : string;
-  
-  constructor(private location: Location, private stateService: StateService) { }
+  currentMode!: string;
+  slidesPerView!: number;
+  swiper! : Swiper;
+  constructor(private location: Location, private platform: Platform, private stateService: StateService) { }
   
   getData = async (): Promise<void> => {
     const { allEvents } = await import("../../data/data.json");
@@ -38,26 +40,49 @@ export class DiscoverContentPage implements OnInit, AfterViewInit {
     console.log("CARD DATA: HAHAH ",this.cardData.data)
   }
 
-  ngOnInit() {
-    this.getData();
-    this.currentTextMode =  this.stateService.getCurrentTextMode();
-  }
-  ngAfterViewInit() {
-    new Swiper(".cardSwiper", {
-      slidesPerView: 3, // Set the number of contents to be displayed in a single view
-      spaceBetween: 2, // Adjust the spacing between contents
-      // navigation: {
-      //   nextEl: ".swiper-button-next",
-      //   prevEl: ".swiper-button-prev",
-      // },
-      // // Scrollbar
-      // direction: "vertical",
-      // freeMode: true,
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
-      // mousewheel: true,
-    });
+  checkSwiperSlidesPerView = () => {
+    if (this.platform.width() < 768) {
+      this.slidesPerView = 1;
+    } 
+    else if (this.platform.width() >= 768 && this.platform.width() <= 992) {
+      this.slidesPerView = 2;
+    } else {
+      this.slidesPerView = 3;
+    }
+    this.swiper.params.slidesPerView = this.slidesPerView;
+    this.swiper.update();
+    console.log("Swiper Slides per View + screen size: ", this.swiper.params.slidesPerView, this.platform.width())
   }
 
+  ngOnInit() {
+    // Subscribe
+    this.stateService.currentMode$.subscribe((currentMode) => {
+      this.currentMode = currentMode;
+    })
+    this.getData();
+  }
+  
+  ngAfterViewInit() {
+    if (this.platform.width() < 768) {
+      this.slidesPerView = 1;
+    } 
+    else if (this.platform.width() >= 768 && this.platform.width() <= 992) {
+      this.slidesPerView = 2;
+    } else {
+      this.slidesPerView = 3;
+    }
+
+    this.swiper = new Swiper(".cardSwiper", {
+      slidesPerView: this.slidesPerView,
+      spaceBetween: 2, 
+      scrollbar: {
+        el: ".swiper-scrollbar",
+        hide: true,
+      },
+    });
+    window.addEventListener('resize', this.checkSwiperSlidesPerView);
+  }
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkSwiperSlidesPerView);
+  }
 }

@@ -3,3 +3,52 @@
   height: auto;
   object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
 }
+
+ion-input.search-button {
+  --background: #373737;
+  --color: #fff;
+  --placeholder-color: #ddd;
+  --placeholder-opacity: 0.8;
+
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+}
+
+ion-input.search-button {
+  color: var(--ion-color-step-700, #373737);
+}
+
+ion-title.sub-header-title {
+  font-size: 3rem;
+  margin: 4px 0;
+}
+// ion-menu::part(backdrop) {
+//   background-color: rgba(255, 0, 255, 0.5);
+// }
+
+// ion-menu::part(container) {
+//   border-radius: 0 20px 20px 0;
+
+//   box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
+// }
+// ion-header {
+//   position: sticky;
+//   top: env(
+//     safe-area-inset-top
+//   ); /* Ensures it stays below the browser's scrollbar */
+//   z-index: 999; /* Make sure it's above other content */
+// }
+
+ion-toolbar.sub-header {
+  --background: linear-gradient(to right, #ff6633, #669999);
+}
+
+// ion-toolbar.light {
+//   --backgroun
+// }
+ion-toolbar.dark {
+  --background: var(--ion-color-header-dark);
+  --color: var(--ion-color-dark-contrast);
+}

@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
-  private initialMode: string = 'light';
-  private initialTextMode: string = 'light';
+  private _currentMode = new BehaviorSubject<string>("light");
+  private _isAuthenticated = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$ = this._isAuthenticated.asObservable();
+  public currentMode$ = this._currentMode.asObservable();
 
-  // For Initial Background Color
-  getCurrentMode(): string {
-    return this.initialMode;
+  getcurrentMode(): string {
+    return this._currentMode.getValue();
   }
-  setCurrentMode(mode: string): void {
-    this.initialMode = mode;
+  getAuthStatus(): boolean {
+    return this._isAuthenticated.getValue();
   }
 
-  // For Initial Text Color
-  getCurrentTextMode() : string {
-    return this.initialTextMode;
+  setcurrentMode(value: string) {
+    this._currentMode.next(value);
   }
-  setCurrentTextMode(textMode: string) : void {
-    this.initialTextMode = textMode;
+  setAuthStatus(value: boolean) {
+    this._isAuthenticated.next(value);
   }
 }

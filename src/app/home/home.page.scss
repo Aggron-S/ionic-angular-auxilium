@@ -1,15 +1,32 @@
-.circle-glow {
-  position: absolute;
-  width: 73%;
-  height: auto;
-  object-fit: cover;
-}
+// .circle-glow {
+//   position: absolute;
+//   width: 73%;
+//   height: auto;
+//   object-fit: cover;
+// }
 
 .box-logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 50%;
-  height: auto;
-  object-fit: cover;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  width: 80%;
+}
+
+ion-content {
+  display: flex;
+  justify-content: center;
+}
+
+ion-grid {
+  width: 100%;
+}
+
+ion-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px;
+}
+
+ion-col {
+  max-width: 100%;
 }

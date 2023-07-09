@@ -1,0 +1,43 @@
+<ion-col size="2.5">
+  <!-- Side Panel and should have a floating button when certain viewport was reached -->
+  <ion-card [color]="currentMode">
+    <ion-card-header>
+      <ion-card-title class="project-card-title">Project Proponent</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- MUST BE DYNAMIC, LIKE PUT PROPONENT'S NAME AND IMAGE IN THE JSON FILE TO BE ACCESSED AND RENDERED -->
+      <div class="proponents-container">
+        <img class="proponents-logo-container" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          <ion-text class="ion-align-self-center ion-padding-start">
+            <p><strong class="project-funding-details-title">John Michael Ramirez</strong></p>
+          </ion-text>
+      </div>
+
+      <!-- Funding Info  -->
+      <ion-text color="medium" class="card-footer">
+        <p>Funded {{progress}}%</p>
+      </ion-text>
+      <!-- Progress -->
+      <div class="progress-container">
+        <div class="progress-indicator" style.width="{{progress}}%">
+        </div>
+      </div>
+
+      <div class="ion-margin-vertical">
+        <ion-text color="medium">
+          <p> <strong class="project-funding-details-title">Raised:</strong> P1280</p>
+          <p> <strong class="project-funding-details-title">Goal:</strong> P2000</p>
+          <p> <strong class="project-funding-details-title">Due Date:</strong> 11/20/2021</p>
+        </ion-text>
+      </div>
+      
+      <div class="card-footer">
+        <ion-button color="success" shape="round">
+          Fund
+        </ion-button>
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+</ion-col>

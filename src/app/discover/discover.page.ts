@@ -10,15 +10,11 @@ interface CardData {
   styleUrls: ['./discover.page.scss'],
 })
 
-
-
 export class DiscoverPage implements OnInit {
   cardData: CardData = { data: [] };
-  currentTextMode!: string;
-  
-  constructor(private stateService: StateService) {
-    this.currentTextMode = this.stateService.getCurrentTextMode();
-  }
+  currentMode!: string;
+  progress = 10;
+  constructor(private stateService: StateService) {}
 
   getData = async (): Promise<void> => {
     const { allEvents } = await import("../../data/data.json");
@@ -26,6 +22,11 @@ export class DiscoverPage implements OnInit {
   }
 
   ngOnInit() {
+    // Subscribe
+    this.stateService.currentMode$.subscribe((currentMode) => {
+      this.currentMode = currentMode;
+    })
+
     this.getData();
   }
 }
