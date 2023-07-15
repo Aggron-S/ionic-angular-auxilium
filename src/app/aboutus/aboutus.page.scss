@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.logo-img {
+  height: auto;
+  width: 450px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15%;
+  margin: 0 10px;
+  height: 100%;
+
+  ion-label {
+    width: 700px;
+    font-size: 20px;
+    margin: 0 30px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .aboutus-fab {
+    display: none;
+  }
+  .wrapper {
+    margin: 0;
+  }
+}

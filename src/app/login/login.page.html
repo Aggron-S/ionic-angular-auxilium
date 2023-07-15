@@ -1,9 +1,20 @@
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <strong>Login Page</strong>
-    <ion-button (click)="changeAuthStatus()" expand="block" shape="round">
-      Login
-    </ion-button>
+  <div class="container">
+    <img src="/assets/app-icons/box-logo.svg" class="logo-img" />
+
+    <ion-card class="card">
+      <ion-label class="indent">Email Address:</ion-label>
+      <input type="email" [(ngModel)]="email" placeholder="Email Address">
+
+      <ion-label class="indent">Password:</ion-label>
+      <input type="password" [(ngModel)]="pass" placeholder="Password">
+
+      <div class="login-btn" (click)="login()">Login</div>
+
+      <div class="signup-container">
+        <p>Not Registered Yet?</p>
+        <div class="signup-btn" routerLink="/signup">Sign Up</div>
+      </div>
+    </ion-card>
   </div>
 </ion-content>
-

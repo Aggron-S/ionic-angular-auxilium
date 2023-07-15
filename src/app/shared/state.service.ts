@@ -10,15 +10,25 @@ export class StateService {
   public isAuthenticated$ = this._isAuthenticated.asObservable();
   public currentMode$ = this._currentMode.asObservable();
 
+  private _userQuery = new BehaviorSubject<string>('');
+  public userQuery$ = this._userQuery.asObservable();
+
+  getQuery(): string {
+    return this._userQuery.getValue();
+  }
+  setQuery(value: string) {
+    this._userQuery.next(value);
+  }
+
   getcurrentMode(): string {
     return this._currentMode.getValue();
   }
-  getAuthStatus(): boolean {
-    return this._isAuthenticated.getValue();
-  }
-
   setcurrentMode(value: string) {
     this._currentMode.next(value);
+  }
+
+  getAuthStatus(): boolean {
+    return this._isAuthenticated.getValue();
   }
   setAuthStatus(value: boolean) {
     this._isAuthenticated.next(value);

@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./discover-content/discover-content.module').then( m => m.DiscoverContentPageModule)
   },
   {
+    path: 'userproj/:id',
+    loadChildren: () => import('./userproj-content/userproj-content.module').then( m => m.UserprojContentPageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -28,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
   },
   {
-    path: 'join',
-    loadChildren: () => import('./join/join.module').then( m => m.JoinPageModule)
-  },
-  {
     path: 'aboutus',
     loadChildren: () => import('./aboutus/aboutus.module').then( m => m.AboutusPageModule)
   },
@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'createproj',
     loadChildren: () => import('./createproj/createproj.module').then( m => m.CreateprojPageModule)
+  },
+  {
+    path: 'userproj-content',
+    loadChildren: () => import('./userproj-content/userproj-content.module').then( m => m.UserprojContentPageModule)
   },
 
 

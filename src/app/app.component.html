@@ -15,39 +15,22 @@
       </ion-toolbar>
     </ion-header>
 
-    <!-- PUT MANY ngTemplate if its possible, kesa sa maglagay ka palagi ng inline ngIf, redundant as fuck -->
-    <ion-content class="ion-padding">
+    <ion-content class="ion-padding" [class]="currentMode">     
       <!-- Side Menu Content -->
-      <li>
+      <li class="side-menu-li">
         <a [ngClass]="['ion-padding', currentMode]" routerLink="/discover">Discover</a>
-
-        <!-- if not authenticated -->
-        <ng-container *ngIf="!isAuthenticated; else authenticated">
-          <a [ngClass]="['ion-padding', currentMode]" routerLink="/join" *ngIf="!isAuthenticated">Join</a>
-        </ng-container>
-
+        
         <!-- if authenticated -->
-        <ng-template #authenticated>
-          <a [ngClass]="['ion-padding', currentMode]" routerLink="/userproj" *ngIf="isAuthenticated">Your Project</a>
-          <a [ngClass]="['ion-padding', currentMode]" routerLink="/createproj" *ngIf="isAuthenticated">Create</a>
-        </ng-template>
+        <a [ngClass]="['ion-padding', currentMode]" routerLink="/userproj" *ngIf="isAuthenticated">Your Project</a>
+        <a [ngClass]="['ion-padding', currentMode]" routerLink="/createproj" *ngIf="isAuthenticated">Create</a>
         
         <a [ngClass]="['ion-padding', currentMode]" routerLink="/aboutus">About Us</a>
+
+        <!-- Login Button -->
+        <button class="login-btn" routerLink="/login" *ngIf="!isAuthenticated"> Login </button>
+        <button class="login-btn" routerLink="/login" *ngIf="isAuthenticated"> User </button>
       </li>
 
-      <!-- Change Theme Button -->
-      <ion-button (click)="changeTheme()" expand="block" fill="clear" shape="round">
-        <ion-icon [name]="currentIconName"></ion-icon>
-      </ion-button>
-
-      <!-- Login Button -->
-      <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true" *ngIf="!isAuthenticated">
-        Login
-      </ion-button>
-
-      <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true" *ngIf="isAuthenticated">
-        User
-      </ion-button>
       <ion-buttons slot="end">
 
       </ion-buttons>
@@ -87,12 +70,9 @@
         <ion-buttons class="ion-margin-end" slot="end">
           <li>
             <a [ngClass]="['ion-padding', currentMode]" routerLink="/discover">Discover</a>
-  
-            <!-- if not authenticated -->
-            <ng-container *ngIf="!isAuthenticated; else authenticated">
-              <a [ngClass]="['ion-padding', currentMode]" routerLink="/join" *ngIf="!isAuthenticated">Join</a>
-            </ng-container>
-            
+            <!-- if authenticated -->
+            <a [ngClass]="['ion-padding', currentMode]" routerLink="/userproj" *ngIf="isAuthenticated">Your Project</a>
+            <a [ngClass]="['ion-padding', currentMode]" routerLink="/createproj" *ngIf="isAuthenticated">Create</a>            
             
             <a [ngClass]="['ion-padding', currentMode]" routerLink="/aboutus">About Us</a>
           </li>
@@ -103,36 +83,31 @@
           </ion-button>
   
           <!-- Login Button -->
-          <ion-button class="ion-margin-start" color="success" routerLink="/login" expand="block" fill="solid" shape="round" strong="true">
-            Login
-          </ion-button>
-  
+          <div class="login-btn" routerLink="/login"> Login </div>
         </ion-buttons>
       </ng-template>
     </ion-toolbar>
 
     <!-- Sub Header -->
     <ion-toolbar class="sub-header" *ngIf="shouldDisplaySubHeader">
-      <ion-title class="sub-header-title" color="light">Discover Projects</ion-title>
+      <ion-title class="sub-header-title" color="light">{{ subHeaderText }}</ion-title>
 
       <!-- if small screen -->
       <ng-container *ngIf="isSmallScreen; else notSmallScreen">
         <ion-buttons slot="end">
-          <!-- Change Theme Button -->
-          <ion-button (click)="searchProj()" expand="block" fill="clear" shape="round" color="light">
+          <!-- Search Button -->
+          <ion-button (click)="searchProj($event)" expand="block" fill="clear" shape="round" color="light" *ngIf="shouldDisplaySearch">
             <ion-icon size="large" name="search-outline"></ion-icon>
           </ion-button>
-  
+          
         </ion-buttons>
       </ng-container>
-
+      
       <!-- if not small screen -->
       <ng-template #notSmallScreen>
-        <ion-buttons slot="end" class="ion-margin-end">
-          <ion-input class="ion-margin-end search-button" type="text" [color]="currentMode" fill="outline" shape="round"></ion-input>
-          <ion-button (click)="searchProj()" color="dark" expand="block" fill="solid" shape="round">
-            Search
-          </ion-button>
+        <ion-buttons slot="end" class="ion-margin-end" *ngIf="shouldDisplaySearch">
+          <input type="text" id="search-input" placeholder="Search a project" (keypress)="searchProj($event)">
+          <button type="button" class="search-btn" (click)="searchProj($event)"> Search </button>
         </ion-buttons>
       </ng-template>
   

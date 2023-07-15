@@ -1,32 +1,53 @@
-// .circle-glow {
-//   position: absolute;
-//   width: 73%;
-//   height: auto;
-//   object-fit: cover;
-// }
-
-.box-logo {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  width: 80%;
-}
-
-ion-content {
+.container {
   display: flex;
+  align-items: center;
   justify-content: center;
+  height: 100%;
+  gap: 15%;
+  background-image: url("/assets/app-icons/circle-glow-effect.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-ion-grid {
-  width: 100%;
+.logo-img {
+  height: 600px;
+  width: 500px;
 }
 
-ion-row {
+.card {
+  height: 450px;
+  width: 350px;
+  font-size: 60px;
+  letter-spacing: 4px;
   display: flex;
-  justify-content: space-between;
-  margin: 0 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15%;
+  color: white;
 }
 
-ion-col {
-  max-width: 100%;
+.signup-btn {
+  background-color: rgba(102, 153, 153, 1);
+  color: white;
+  border-radius: 5px;
+  padding: 12px 35px;
+  font-weight: 200;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.signup-btn:hover {
+  background-color: rgb(97, 145, 145);
+}
+
+@media (max-width: 1000px) {
+  .login-fab {
+    display: none;
+  }
+
+  .card {
+    text-align: center;
+    align-items: center;
+  }
 }

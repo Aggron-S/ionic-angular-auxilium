@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <div class="fab-button" *ngIf="displayFab">
+  <div *ngIf="displayFab">
     <ion-fab slot="fixed" vertical="center" horizontal="start">
       <ion-fab-button (click)="showSideBar()">
         <ion-icon name="chevron-forward-circle"></ion-icon>
@@ -49,10 +49,7 @@
               <p> <strong class="project-funding-details-title">Due Date:</strong> {{ item.due_date }}</p>
             </ion-text>
           </div>
-          
-          <div class="card-footer">
-            <button class="user-proj-btn"> Fund </button>
-          </div>
+
         </ion-card-content>
       </ion-card>
   
@@ -76,6 +73,11 @@
         </ion-card-content>
         
       </ion-card>
+      <!-- No Functionality for now -->
+      <div class="btn-flex-center ion-margin-vertical">
+        <button class="user-proj-btn"> Update Project </button>
+      </div>
+
       <ion-card [color]="currentMode">
         <ion-card-header>
           <ion-card-title class="ion-text-center">Auxiliator</ion-card-title>
@@ -104,7 +106,7 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col size="12">
-          <ion-card class="main-content-card" [color]="currentMode" *ngFor="let item of cardData.data">
+          <ion-card [color]="currentMode" *ngFor="let item of cardData.data">
             <ion-card-header class="ion-text-end">
               <ion-card-title class="project-card-title">{{ item.project_name }}</ion-card-title>
               <div class="department-info-container">
@@ -128,7 +130,7 @@
                 </ion-card-content>
               </ion-card>
             </div>
-
+    
             <!--background / methodology / other info -->
             <ion-card [color]="currentMode">
               <ion-card-header>
@@ -173,8 +175,48 @@
             </ion-card-content> -->
           </ion-card>
         </ion-col>
+
   
       </ion-row>
     </ion-grid>
+  </div>
+
+  <div class="sidebar-right" id="sidebar-right">
+    <div class="sidebar-right-content">
+      <ion-card [color]="currentMode">
+        <ion-card-content>
+          <ion-item fill="outline" counter="true" class="ion-margin-top">
+            <ion-label position="floating" color="medium">Post Project Update</ion-label>
+            <ion-input type="text" maxlength="100" counter="true" [class]="currentMode"></ion-input>
+          </ion-item>
+          <!-- No Functionality for now -->
+          <div class="btn-flex-center ion-margin-top">
+            <button class="user-proj-btn"> Post </button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card [color]="currentMode">
+        <ion-card-header>
+          <ion-card-title class="ion-text-center">Auxiliator</ion-card-title>
+        </ion-card-header>
+  
+        <ion-card-content>
+          Sed tincidunt diam a massa pharetra faucibus. Praesent condimentum
+          id arcu nec fringilla. Maecenas faucibus, ante et venenatis
+          interdum, erat mi eleifend dui, at convallis nisl est nec arcu. Duis
+          vitae arcu rhoncus, faucibus magna ut, tempus metus. Cras in nibh
+          sed ipsum consequat rhoncus. Proin fringilla nulla ut augue tempor
+          fermentum. Nunc hendrerit non nisi vitae finibus. Donec eget ornare
+          libero. Aliquam auctor erat enim, a semper risus semper at. In ut
+          dui in metus tincidunt euismod eget et lacus. Aenean et dictum urna,
+          sed rhoncus lorem. Duis pharetra sagittis odio. Etiam a libero ut
+          nisi feugiat tincidunt vel vitae turpis. Maecenas vel orci sit amet
+          lorem hendrerit venenatis sollicitudin ut dui. Quisque rhoncus nibh
+          in massa pretium scelerisque.
+        </ion-card-content>
+        
+      </ion-card>
+    </div>
   </div>
 </ion-content>

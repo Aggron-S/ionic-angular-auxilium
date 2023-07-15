@@ -1,13 +1,122 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>createproj</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">createproj</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="container">
+    <div class="banner">Start a Project</div>
+    <div class="pad-container">
+      <div class="wrapper">
+        <div class="left">
+          <ion-card class="flex">
+            <ion-card-title>Proponent Info</ion-card-title>
+            <ion-label>Name:</ion-label>
+            <input type="text">
+            <ion-label>Address:</ion-label>
+            <input type="text">
+            <ion-label>Contact No.:</ion-label>
+            <input type="text">
+          </ion-card>
+          <ion-card class="add">
+            <ion-img src="../../assets/AddSign.png"></ion-img>
+            <ion-card-content>Add another Proponent</ion-card-content>
+          </ion-card>
+        </div>
+        <div class="center">
+          <ion-card class="flex">
+            <div class="project-info-card flex">
+              <ion-card-title>Project Info</ion-card-title>
+              <ion-label>Title:</ion-label>
+              <input type="text">
+              <ion-grid>
+                <ion-row class="row">
+                  <ion-col>
+                    <ion-label>Funds Needed:</ion-label>
+                  </ion-col>
+                  <ion-col>
+                    <ion-label>Duration:</ion-label>
+                  </ion-col>
+                </ion-row>
+                  <ion-row class="row">
+                    <ion-col>
+                      <input type="text">
+                    </ion-col>
+                    <ion-col>
+                      <input type="text">
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+              <ion-label>Department:</ion-label>
+              <input type="text">
+              <ion-label>Adviser:</ion-label>
+              <input type="text">
+              <ion-label>Adviser Contact No.:</ion-label>
+              <input type="text">
+            </div>
+            <ion-card-content>Accepted Mode of Payment</ion-card-content>
+            <div class="card-payment transparent-card">
+                <!-- <input type="checkbox">
+                <input type="checkbox"> -->
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-checkbox justify="start"></ion-checkbox>
+                      <ion-label>Gcash</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-checkbox justify="start"></ion-checkbox>
+                      <ion-label>Paymaya</ion-label>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+            </div>
+          </ion-card>
+        </div>
+        <div class="right">
+          <ion-card class="flex">
+            <ion-card-title>Project Detail</ion-card-title>
+            <ion-label>Introduction:</ion-label>
+            <input type="text" class="big">
+            <ion-label>Background:</ion-label>
+            <input type="text" class="big">
+            <ion-label>Methodology:</ion-label>
+            <input type="text" class="big">
+            <div class="wrapper">
+              <div class="add-header">
+                <ion-card-content>Add Header Image</ion-card-content>
+                <div class="img transparent-card">
+                  <ion-img src="../../assets/AddSign.png"></ion-img>
+                </div>
+              </div>
+              <div class="scope">
+                <ion-card-content>Scope of Crown Funding</ion-card-content>
+                <div class="funding flex transparent-card">
+                  <input type="text">
+                  <input type="text">
+                  <input type="text">
+                </div>
+              </div>
+                <div class="social-media">
+                  <ion-card-content>Add Social Media Links</ion-card-content>
+                  <div class="social-links transparent-card">
+                    <div>
+                      <ion-icon name="logo-discord" size="large"></ion-icon> <input type="text">
+                    </div>
+                    <div>
+                      <ion-icon name="logo-facebook" size="large"></ion-icon> <input type="text">
+                    </div>
+                    <div>
+                      <ion-icon name="logo-twitter" size='large'></ion-icon> <input type="text">
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </ion-card>
+        </div>
+      </div>
+      
+      <div class="submit-btn">
+        <div>Submit</div>
+      </div>
+    </div>
+  </div>
 </ion-content>

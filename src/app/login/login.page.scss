@@ -1,14 +1,100 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 15%;
+}
+.logo-img {
+  width: 650px;
+  height: 600px;
+  // width: 70%;
+  // height: 70%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.card {
+  background: rgb(102, 153, 153);
+  background: linear-gradient(
+    169deg,
+    rgba(102, 153, 153, 1) 35%,
+    rgba(255, 102, 51, 1) 100%
+  );
+  width: 350px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+  .indent {
+    text-indent: 5px;
+    color: black;
+    font-weight: 200;
+    margin-top: 20px;
+  }
+
+  .login-btn {
+    margin: auto;
+    background-color: #202027;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-weight: 200;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+  .login-btn:hover {
+    background-color: #36363f;
+  }
+
+  .signup-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    padding: 8px 20px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    p {
+      color: #202027;
+      font-style: bold;
+    }
+  }
+
+  .signup-btn {
+    background-color: rgba(102, 153, 153, 1);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 25px;
+    font-weight: 200;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  }
+  .signup-btn:hover {
+    background-color: rgb(97, 145, 145);
+  }
+
+  input {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    height: 50px;
+    color: black;
+    text-indent: 10px;
+    font-size: 15px;
+    font-weight: 200;
+    outline: none;
+  }
+  input::placeholder {
+    color: rgb(187, 185, 185);
+  }
+}
+
+@media (max-width: 1205px) {
+  .logo-img {
+    display: none;
+  }
 }

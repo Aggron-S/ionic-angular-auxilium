@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { JoinPageRoutingModule } from './join-routing.module';
+import { UserprojContentPageRoutingModule } from './userproj-content-routing.module';
 
-import { JoinPage } from './join.page';
+import { UserprojContentPage } from './userproj-content.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    JoinPageRoutingModule
+    UserprojContentPageRoutingModule
   ],
-  declarations: [JoinPage]
+  declarations: [UserprojContentPage]
 })
-export class JoinPageModule {}
+export class UserprojContentPageModule {}

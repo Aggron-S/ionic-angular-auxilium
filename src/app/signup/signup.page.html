@@ -1,7 +1,29 @@
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <strong>Signup Page</strong>
-    
+  <div class="container">
+    <img src="/assets/app-icons/box-logo.svg" class="logo-img" />
+
+    <ion-card class="card">
+      <ion-label class="indent">First Name:</ion-label>
+      <input type="text" [(ngModel)]="fname" placeholder="First Name">
+
+      <ion-label class="indent">Last Name:</ion-label>
+      <input type="text" [(ngModel)]="lname" placeholder="Last Name">
+
+      <ion-label class="indent">Department:</ion-label>
+      <input type="text" [(ngModel)]="department" placeholder="Department">
+
+      <ion-label class="indent">Email Address:</ion-label>
+      <input type="email" [(ngModel)]="email" placeholder="Email Address">
+
+      <ion-label class="indent">Password:</ion-label>
+      <input type="password" [(ngModel)]="pass" placeholder="Password">
+
+      <ion-label class="indent">Re-Enter Password:</ion-label>
+      <input type="password" [(ngModel)]="repass" placeholder="Re-Enter Password">
+
+      <div class="signup-container">
+        <div class="signup-btn" (click)="signup()">Sign Up</div>
+      </div>
+    </ion-card>
   </div>
 </ion-content>
-

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Platform } from '@ionic/angular';
 import { StateService } from '../shared/state.service';
@@ -8,11 +8,11 @@ interface CardData {
 }
 
 @Component({
-  selector: 'app-discover-content',
-  templateUrl: './discover-content.page.html',
-  styleUrls: ['./discover-content.page.scss'],
+  selector: 'app-userproj-content',
+  templateUrl: './userproj-content.page.html',
+  styleUrls: ['./userproj-content.page.scss'],
 })
-export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
+export class UserprojContentPage implements OnInit, AfterViewInit, OnDestroy {
   cardData: CardData = { data: [] };
   progress = 10
   currentMode!: string;
@@ -26,11 +26,13 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
     const url = this.location.path().split('/');
     const currentPath = url[url.length - 1];
 
-    // exclude user projects in public projects
-    const publicProj = project.filter(item => !('user_proj' in item));
-
-    if(publicProj.length > 0) {
-      publicProj.map((item : any) => {
+    // Check if user has existing projects
+    const userProjArray = project
+    .map(item => ('user_proj' in item) ? item.user_proj : undefined)
+    .find(userProj => userProj && userProj.length > 0);
+    
+    if(userProjArray) {
+      userProjArray.map((item : any) => {
         item?.id === currentPath && (this.cardData.data.push(item) )
       })
       // this.cardData.data.map(item => {
@@ -49,19 +51,16 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
     const content = document.getElementById("content");
     this.mediaQuery = window.matchMedia("(max-width: 767px)");
 
-    // this.displaySideBar = this.displaySideBar === true ? false : true
-    // this.mediaQuery.matches ? (this.displaySideBar = this.displaySideBar === true ? false : true) : (
-    //   this.displaySideBar = true
-    // );
+    this.mediaQuery.matches ? (this.displaySideBar = this.displaySideBar === true ? false : true) : (
+      this.displaySideBar = true
+    );
 
     if (this.displaySideBar) {
-      // sidebar != null && (sidebar.style.left = "0");
-      sidebar?.classList.toggle("visible");
-      // content != null && (content.style.marginLeft= "260px");
+      sidebar != null && (sidebar.style.left = "0");
+      content != null && (content.style.marginLeft= "260px");
     } else {
-      // sidebar != null && (sidebar.style.left = "-250px");
-      sidebar?.classList.toggle("invisible");
-      // content != null && (content.style.marginLeft= "0");
+      sidebar != null && (sidebar.style.left = "-250px");
+      content != null && (content.style.marginLeft= "0");
     }
 
     // Fab button
@@ -73,9 +72,6 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
       this.currentMode = currentMode;
     })
     this.getData();
-    
-    // Fab button
-    this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
   }
   
   ngAfterViewInit() {
@@ -97,7 +93,7 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
     // }
 
     // Fab button
-    // this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
+    this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
 
     // window.addEventListener("resize", this.showSideBar);
   }

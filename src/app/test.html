@@ -1,43 +1,75 @@
-<ion-col size="2.5">
-  <!-- Side Panel and should have a floating button when certain viewport was reached -->
-  <ion-card [color]="currentMode">
-    <ion-card-header>
-      <ion-card-title class="project-card-title">Project Proponent</ion-card-title>
-    </ion-card-header>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
 
-    <ion-card-content>
-      <!-- MUST BE DYNAMIC, LIKE PUT PROPONENT'S NAME AND IMAGE IN THE JSON FILE TO BE ACCESSED AND RENDERED -->
-      <div class="proponents-container">
-        <img class="proponents-logo-container" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          <ion-text class="ion-align-self-center ion-padding-start">
-            <p><strong class="project-funding-details-title">John Michael Ramirez</strong></p>
-          </ion-text>
-      </div>
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
-      <!-- Funding Info  -->
-      <ion-text color="medium" class="card-footer">
-        <p>Funded {{progress}}%</p>
-      </ion-text>
-      <!-- Progress -->
-      <div class="progress-container">
-        <div class="progress-indicator" style.width="{{progress}}%">
-        </div>
-      </div>
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
 
-      <div class="ion-margin-vertical">
-        <ion-text color="medium">
-          <p> <strong class="project-funding-details-title">Raised:</strong> P1280</p>
-          <p> <strong class="project-funding-details-title">Goal:</strong> P2000</p>
-          <p> <strong class="project-funding-details-title">Due Date:</strong> 11/20/2021</p>
-        </ion-text>
-      </div>
-      
-      <div class="card-footer">
-        <ion-button color="success" shape="round">
-          Fund
-        </ion-button>
-      </div>
-    </ion-card-content>
+.sidenav a:hover {
+  color: #f1f1f1;
+}
 
-  </ion-card>
-</ion-col>
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
+</html> 

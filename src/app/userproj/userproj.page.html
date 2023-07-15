@@ -1,13 +1,58 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>userproj</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ng-container *ngIf="hasFetchedData; else createProjDisplay">
+    <ng-container *ngIf="cardData.data.length > 0; else loadingDisplay">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="11" size-sm="4" size-lg="3" *ngFor="let item of cardData.data">
+            <ion-card [color]="currentMode" routerLink="{{ item.id }}">
+              <div class="image-container" [style.background-image]="'url('+ item.project_image +')'"></div>
+              <ion-card-header>
+                <ion-card-title class="card-text">{{ item.project_name }}</ion-card-title>
+              </ion-card-header>
+  
+              <ion-card-content class="project-card-content">
+                {{ item.project_description }}
+              </ion-card-content>
+  
+              <div class="ion-margin-vertical progress-container">
+                <div class="progress-indicator" style.width="{{item.progress}}%">
+                  <!-- Progress -->
+                </div>
+              </div>
+  
+              <ion-text color="medium" class="project-funding-details">
+                <p> <strong class="project-funding-details-title">Raised:</strong>P{{ item.raised }} </p>
+                <p> <strong class="project-funding-details-title">Goal:</strong>P{{ item.goal }}</p>
+                <p> <strong class="project-funding-details-title">Due Date:</strong> {{ item.due_date }}</p>
+              </ion-text>
+  
+            </ion-card>
+          </ion-col>
+    
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </ng-container>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">userproj</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Show loading display -->
+  <ng-template #loadingDisplay>
+    <div class="display-indicator">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  </ng-template>
+
+  <ng-template #createProjDisplay>
+    <ion-grid class="create-proj-card-container">
+      <ion-row>
+        <ion-col size="9">
+          <ion-card class="ion-text-center" [color]="currentMode" routerLink="/createproj">
+            <img src="/assets/app-icons/create-proj-sign.png" alt="create-proj-sign">
+            <ion-card-header>
+              <ion-card-title class="card-text">Create Project</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
 </ion-content>
