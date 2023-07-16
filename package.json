@@ -12,8 +12,7 @@
     "lint": "ng lint",
     "add": "ionic capacitor add android",
     "build_android": "ionic capacitor build android",
-    "run_android": "ionic capacitor run android",
-    "http_server": "http-server"
+    "run_android": "ionic capacitor run android"
   },
   "private": true,
   "dependencies": {
