@@ -1,122 +1,142 @@
-
 <ion-content>
   <div class="container">
-    <div class="banner">Start a Project</div>
-    <div class="pad-container">
-      <div class="wrapper">
-        <div class="left">
-          <ion-card class="flex">
-            <ion-card-title>Proponent Info</ion-card-title>
-            <ion-label>Name:</ion-label>
-            <input type="text">
-            <ion-label>Address:</ion-label>
-            <input type="text">
-            <ion-label>Contact No.:</ion-label>
-            <input type="text">
-          </ion-card>
-          <ion-card class="add">
-            <ion-img src="../../assets/AddSign.png"></ion-img>
-            <ion-card-content>Add another Proponent</ion-card-content>
-          </ion-card>
-        </div>
-        <div class="center">
-          <ion-card class="flex">
-            <div class="project-info-card flex">
-              <ion-card-title>Project Info</ion-card-title>
-              <ion-label>Title:</ion-label>
-              <input type="text">
-              <ion-grid>
-                <ion-row class="row">
-                  <ion-col>
-                    <ion-label>Funds Needed:</ion-label>
-                  </ion-col>
-                  <ion-col>
-                    <ion-label>Duration:</ion-label>
-                  </ion-col>
-                </ion-row>
-                  <ion-row class="row">
-                    <ion-col>
-                      <input type="text">
-                    </ion-col>
-                    <ion-col>
-                      <input type="text">
-                    </ion-col>
-                  </ion-row>
-              </ion-grid>
-              <ion-label>Department:</ion-label>
-              <input type="text">
-              <ion-label>Adviser:</ion-label>
-              <input type="text">
-              <ion-label>Adviser Contact No.:</ion-label>
-              <input type="text">
+    <form #myForm="ngForm">
+      <div class="pad-container">
+        <div class="wrapper">
+          <ng-container *ngIf="hideContainer || currentStep === 1">
+            <div class="left">
+              <ion-card class="flex">
+                <ion-card-title>Proponent Info</ion-card-title>
+                <ion-label>Name:</ion-label>
+                <input type="text" name="name" required [(ngModel)]="name">
+                <ion-label>Address:</ion-label>
+                <input type="text" name="address" required [(ngModel)]="address">
+                <ion-label>Contact No.:</ion-label>
+                <input type="text" name="contact" required [(ngModel)]="contact">
+              </ion-card>
+              <ion-card class="add">
+                <ion-img src="/assets/app-icons/add-sign-small.png"></ion-img>
+                <ion-card-content>Add another Proponent</ion-card-content>
+              </ion-card>
             </div>
-            <ion-card-content>Accepted Mode of Payment</ion-card-content>
-            <div class="card-payment transparent-card">
-                <!-- <input type="checkbox">
-                <input type="checkbox"> -->
-                <ion-grid>
-                  <ion-row>
-                    <ion-col>
-                      <ion-checkbox justify="start"></ion-checkbox>
-                      <ion-label>Gcash</ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row>
-                    <ion-col>
-                      <ion-checkbox justify="start"></ion-checkbox>
-                      <ion-label>Paymaya</ion-label>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-            </div>
-          </ion-card>
-        </div>
-        <div class="right">
-          <ion-card class="flex">
-            <ion-card-title>Project Detail</ion-card-title>
-            <ion-label>Introduction:</ion-label>
-            <input type="text" class="big">
-            <ion-label>Background:</ion-label>
-            <input type="text" class="big">
-            <ion-label>Methodology:</ion-label>
-            <input type="text" class="big">
-            <div class="wrapper">
-              <div class="add-header">
-                <ion-card-content>Add Header Image</ion-card-content>
-                <div class="img transparent-card">
-                  <ion-img src="../../assets/AddSign.png"></ion-img>
+          </ng-container>
+          <div class="center">
+            <ng-container *ngIf="hideContainer || currentStep === 2">
+              <ion-card style="margin-top: 250px;" class="flex">
+                <div class="project-info-card flex">
+                  <ion-card-title>Project Info</ion-card-title>
+                  <ion-label>Title:</ion-label>
+                  <input type="text" name="title" required [(ngModel)]="title">
+                  <ion-grid>
+                    <ion-row class="row">
+                      <ion-col>
+                        <ion-label>Funds Needed:</ion-label>
+                      </ion-col>
+                      <ion-col>
+                        <ion-label>Duration:</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="row">
+                      <ion-col>
+                        <input type="text" name="fundNeeded" required [(ngModel)]="fundNeeded">
+                      </ion-col>
+                      <ion-col>
+                        <input type="text" name="duration" required [(ngModel)]="duration">
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                  <ion-label>Department:</ion-label>
+                  <input type="text" name="department" required [(ngModel)]="department">
+                  <ion-label>Adviser:</ion-label>
+                  <input type="text" name="adviser" required [(ngModel)]="adviser">
+                  <ion-label>Adviser Contact No.:</ion-label>
+                  <input type="text" name="adviserContact" required [(ngModel)]="adviserContact">
                 </div>
-              </div>
-              <div class="scope">
-                <ion-card-content>Scope of Crown Funding</ion-card-content>
-                <div class="funding flex transparent-card">
-                  <input type="text">
-                  <input type="text">
-                  <input type="text">
+                <ion-card-content>Accepted Mode of Payment</ion-card-content>
+                <div class="card-payment transparent-card">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <ion-checkbox justify="start"></ion-checkbox>
+                        <ion-label>Gcash</ion-label>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col>
+                        <ion-checkbox justify="start"></ion-checkbox>
+                        <ion-label>Paymaya</ion-label>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
                 </div>
-              </div>
-                <div class="social-media">
-                  <ion-card-content>Add Social Media Links</ion-card-content>
-                  <div class="social-links transparent-card">
-                    <div>
-                      <ion-icon name="logo-discord" size="large"></ion-icon> <input type="text">
+              </ion-card>
+            </ng-container>
+          </div>
+          <div class="right" *ngIf="hideContainer || currentStep > 2">
+            <ion-card class="flex">
+              <ion-card-title>Project Detail</ion-card-title>
+              <ng-container *ngIf="hideContainer || currentStep === 3">
+                <div>
+                  <ion-label>Introduction:</ion-label>
+                  <ion-textarea name="introduction" required [(ngModel)]="introduction"></ion-textarea>
+                  <ion-label>Background:</ion-label>
+
+                  <ion-textarea name="background" required [(ngModel)]="background"></ion-textarea>
+                  <ion-label>Methodology:</ion-label>
+                  <ion-textarea name="methodology" required [(ngModel)]="methodology"></ion-textarea>
+                </div>
+              </ng-container>
+              <div class="another-page">
+                <ng-container *ngIf="hideContainer || currentStep === 4">
+                  <div class="wrapper">
+                    <div class="add-header">
+                      <ion-card-content>Add Header Image</ion-card-content>
+                      <div class="img transparent-card">
+                        <ion-img src="/assets/app-icons/add-sign-small.png"></ion-img>
+                      </div>
                     </div>
-                    <div>
-                      <ion-icon name="logo-facebook" size="large"></ion-icon> <input type="text">
+                    <div class="scope">
+                      <ion-card-content>Scope of Crown Funding</ion-card-content>
+                      <div class="funding flex transparent-card">
+                        <input type="text" name="scope1" required [(ngModel)]="scope1">
+                        <input type="text" name="scope2" required [(ngModel)]="scope2">
+                        <input type="text" name="scope3" required [(ngModel)]="scope3">
+                      </div>
                     </div>
-                    <div>
-                      <ion-icon name="logo-twitter" size='large'></ion-icon> <input type="text">
+                    <div class="social-media">
+                      <ion-card-content>Add Social Media Links</ion-card-content>
+                      <div class="social-links transparent-card">
+                        <div>
+                          <ion-icon name="logo-discord" size="large"></ion-icon>
+                          <input type="text" name="discord" required [(ngModel)]="discord">
+                        </div>
+                        <div>
+                          <ion-icon name="logo-facebook" size="large"></ion-icon>
+                          <input type="text" name="facebook" required [(ngModel)]="facebook">
+                        </div>
+                        <div>
+                          <ion-icon name="logo-twitter" size='large'></ion-icon>
+                          <input type="text" name="twitter" required [(ngModel)]="twitter">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-            </div>
-          </ion-card>
+                </ng-container>
+              </div>
+            </ion-card>
+          </div>
+        </div>
+        <div class="for-mobile" [ngClass]="{'flex-end' : currentStep == 1}">
+          <div class="btn" *ngIf="currentStep > 1" (click)="previous()">Previous</div>
+          <button class="btn disabled-btn" *ngIf="currentStep > 0 && currentStep < 4" [disabled]="!myForm.valid"
+            (click)="next()">Next</button>
+          <button class="btn disabled-btn" *ngIf="currentStep === 4" [disabled]="!myForm.valid"
+            (click)="submit()">Submit</button>
+        </div>
+        <div class="submit-btn">
+          <button [disabled]="!myForm.valid" (click)="submit()">Submit</button>
         </div>
       </div>
-      
-      <div class="submit-btn">
-        <div>Submit</div>
-      </div>
-    </div>
+    </form>
   </div>
 </ion-content>

@@ -28,7 +28,10 @@
 
         <!-- Login Button -->
         <button class="login-btn" routerLink="/login" *ngIf="!isAuthenticated"> Login </button>
-        <button class="login-btn" routerLink="/login" *ngIf="isAuthenticated"> User </button>
+        <button class="login-btn user-container" (click)="logOut()" *ngIf="isAuthenticated">
+          <ion-label>Anna</ion-label>
+          <img class="student-logo" src="/assets/app-icons/student-girl-1.svg" alt="student-logo">
+        </button>
       </li>
 
       <ion-buttons slot="end">
@@ -83,7 +86,11 @@
           </ion-button>
   
           <!-- Login Button -->
-          <div class="login-btn" routerLink="/login"> Login </div>
+          <button class="login-btn" routerLink="/login" *ngIf="!isAuthenticated"> Login </button>
+          <button class="login-btn user-container" (click)="logOut()" *ngIf="isAuthenticated">
+            <ion-label>Anna</ion-label>
+            <img class="student-logo" src="/assets/app-icons/student-girl-1.svg" alt="student-logo">
+          </button>
         </ion-buttons>
       </ng-template>
     </ion-toolbar>

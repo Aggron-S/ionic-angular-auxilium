@@ -21,7 +21,7 @@ export class UserprojPage implements OnInit {
 
     // Check if user has existing projects
     const userProjArray = project
-    .map(item => ('user_proj' in item) ? item.user_proj : undefined)
+    .map((item : any) => ('user_proj' in item) ? item.user_proj : undefined)
     .find(userProj => userProj && userProj.length > 0);
 
     if (userProjArray) {

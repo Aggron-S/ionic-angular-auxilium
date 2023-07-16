@@ -1,23 +1,14 @@
 <ion-content [fullscreen]="true">
-  <div class="fab-button" *ngIf="displayFab">
-    <ion-fab slot="fixed" vertical="center" horizontal="start">
-      <ion-fab-button (click)="showSideBar()">
+  <!-- Fab Button -->
+  <div *ngIf="displayFab">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+      <ion-fab-button (click)="showSideBar()" [color]="currentMode">
         <ion-icon name="chevron-forward-circle"></ion-icon>
       </ion-fab-button> 
-      <!-- <ion-fab-list side="end">
-        <ion-fab-button>
-          <ion-icon name="document"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="color-palette"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="globe"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list> -->
     </ion-fab>
   </div>
-  <div class="sidebar" id="sidebar">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar" [class.show]="displaySideBar">
     <div class="sidebar-content">
       <ion-card [color]="currentMode">
         <ion-card-header>
@@ -99,7 +90,7 @@
       </ion-card>
     </div>
   </div>
-  
+  <!-- Content -->
   <div class="content" id="content">
     <ion-grid fixed>
       <ion-row>

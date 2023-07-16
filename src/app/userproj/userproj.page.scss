@@ -14,13 +14,13 @@ ion-col {
 
 ion-text.project-funding-details {
   display: flex;
-  flex-direction: row;
-  justify-items: center;
+  justify-content: space-evenly;
 
   p {
-    font-size: 13px;
+    font-size: 12px;
+    margin: 0 3px;
     .project-funding-details-title {
-      font-weight: 900;
+      font-weight: 600;
     }
   }
 }

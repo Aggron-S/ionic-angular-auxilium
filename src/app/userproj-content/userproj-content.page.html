@@ -1,23 +1,12 @@
 <ion-content [fullscreen]="true">
   <div *ngIf="displayFab">
     <ion-fab slot="fixed" vertical="center" horizontal="start">
-      <ion-fab-button (click)="showSideBar()">
+      <ion-fab-button (click)="showSideBar()" [color]="currentMode">
         <ion-icon name="chevron-forward-circle"></ion-icon>
       </ion-fab-button> 
-      <!-- <ion-fab-list side="end">
-        <ion-fab-button>
-          <ion-icon name="document"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="color-palette"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="globe"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list> -->
     </ion-fab>
   </div>
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar" [class.show]="displaySideBar">
     <div class="sidebar-content">
       <ion-card [color]="currentMode">
         <ion-card-header>
@@ -106,7 +95,7 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col size="12">
-          <ion-card [color]="currentMode" *ngFor="let item of cardData.data">
+          <ion-card class="main-content-card" [color]="currentMode" *ngFor="let item of cardData.data">
             <ion-card-header class="ion-text-end">
               <ion-card-title class="project-card-title">{{ item.project_name }}</ion-card-title>
               <div class="department-info-container">

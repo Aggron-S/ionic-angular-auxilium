@@ -4,7 +4,7 @@
   left: 0;
   width: 250px;
   height: 100vh;
-  // background-color: #5a1f1f;
+  z-index: 0;
   transition: left 0.3s ease;
   .sidebar-content {
     height: 100%;
@@ -17,7 +17,6 @@
   right: 20px;
   width: 250px;
   height: 100vh;
-  // background-color: #5a1f1f;
   .sidebar-right-content {
     height: 100%;
     overflow-y: auto;
@@ -25,7 +24,7 @@
 }
 
 .content {
-  margin-left: 250px; /* Set the left margin to match the sidebar width */
+  margin-left: 250px;
   margin-right: 240px;
   transition: margin-left 0.3s ease;
 }
@@ -48,15 +47,17 @@ ion-card-title.project-card-title {
   font-weight: 900;
 }
 
+.main-content-card {
+  box-shadow: none !important;
+  border: none !important;
+}
+
 .proponents-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 1rem;
   .proponents-logo-container {
-    background-image: url("https://ionicframework.com/docs/img/demos/thumbnail.svg");
-    background-size: cover;
-    // min-height: 30px;
     width: 3rem;
     height: auto;
     border-radius: 4rem;
@@ -287,11 +288,44 @@ p {
 @media (max-width: 767px) {
   .sidebar {
     left: -250px;
+    z-index: 1;
   }
   .content {
     margin-left: 0;
   }
+
+  .slider {
+    .project-updates-card-content {
+      font-size: 14px;
+      ion-card-title {
+        font-size: 17px;
+      }
+      ion-card-subtitle {
+        font-size: 12px;
+      }
+    }
+  }
 }
+
+.sidebar.show {
+  left: 0;
+  z-index: 1;
+}
+@media (max-width: 576px) {
+  .slider {
+    .project-update-card {
+      width: 60%;
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .slider {
+    .project-update-card {
+      width: 55%;
+    }
+  }
+}
+
 @media (max-width: 1000px) {
   .sidebar-right {
     right: -250px;

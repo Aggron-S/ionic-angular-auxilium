@@ -26,7 +26,7 @@ export class DiscoverPage implements OnInit {
     if(publicProj.length > 0) {
       this.hasFetchedData = true;
       // Filter the data based on the project name (search)
-      const filteredData = publicProj.filter(item =>
+      const filteredData = publicProj.filter((item : any) =>
         item.project_name && item.project_name.toLowerCase().includes(this.userQuery.toLowerCase())
       );
 

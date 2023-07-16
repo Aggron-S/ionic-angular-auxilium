@@ -55,6 +55,8 @@ ion-content.main-page-content {
 ion-card {
   border-radius: 16px;
   padding-bottom: 20px;
+  --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
   .image-container {
     background-size: cover;
     min-height: 200px;
@@ -62,8 +64,7 @@ ion-card {
 }
 
 ion-toolbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  // backdrop-filter: blur(100px);
+  box-shadow: 0 2px 4px rgba(77, 64, 64, 0.1);
 }
 
 ion-buttons {
@@ -79,7 +80,6 @@ ion-buttons {
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-
   .progress-indicator {
     position: absolute;
     top: 0px;
@@ -100,4 +100,13 @@ ion-spinner {
   width: 50px;
   height: 50px;
   --color: #669999;
+}
+
+ion-fab-button {
+  --background: none;
+  --background-hover: #669999;
+  --box-shadow: none;
+  position: fixed;
+  bottom: 20px;
+  z-index: 9999;
 }

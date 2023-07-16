@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, Platform, NavController } from '@ionic/angular';
 import { StateService } from "./shared/state.service";
 
 @Component({
@@ -20,12 +20,23 @@ export class AppComponent implements OnInit, OnDestroy {
   inputElement!: HTMLInputElement;
   appStaticPath = ["/", "/home", "/login", "/signup"];
   
-  constructor(private stateService: StateService, private alertController: AlertController, private platform: Platform, private router: Router) {}
+  constructor(
+    private stateService: StateService, 
+    private alertController: AlertController, 
+    private platform: Platform, 
+    private router: Router,
+    private navController: NavController
+  ) {}
 
   changeTheme() {
     const newMode = this.stateService.getcurrentMode() === 'light' ? 'dark' : 'light';
     this.stateService.setcurrentMode(newMode);
     this.currentIconName = this.currentIconName === 'sunny-outline' ? 'moon-outline' : 'sunny-outline';
+  }
+
+  logOut() {
+    this.stateService.setAuthStatus(false);
+    this.navController.navigateForward("/home");
   }
 
   checkScreenSize = () => {
@@ -43,7 +54,6 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         // Get Input set to AlertController's input fields
         this.alertController.create({
-          // header: "Search a project",
           inputs: [
             {
               name: 'search',

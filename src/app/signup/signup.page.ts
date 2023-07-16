@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
-import { StateService } from '../shared/state.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,23 +14,21 @@ export class SignupPage implements OnInit {
   email !: string;
   pass !: string;
   repass !: string;
+  constructor(private navController: NavController, private alertController: AlertController) { }
 
-  isAuthenticated! : boolean;
-  constructor(private navController: NavController, private alertController: AlertController, private stateService: StateService) { }
-
-  changeAuthStatus () {
-    let newAuthStatus = false;
-    if(this.stateService.getAuthStatus() === false) {
-      newAuthStatus = true;
-      this.stateService.setAuthStatus(newAuthStatus);
-    }
-    console.log("CHANGED AUTH STATUS:", this.stateService.getAuthStatus());
-  }
+  // changeAuthStatus () {
+  //   let newAuthStatus = false;
+  //   if(this.stateService.getAuthStatus() === false) {
+  //     newAuthStatus = true;
+  //     this.stateService.setAuthStatus(newAuthStatus);
+  //   }
+  // }
 
   async signup() {
     if ((this.fname && this.lname) && (this.department && this.email) && (this.pass && this.repass)) {
-      this.changeAuthStatus();
-      this.stateService.getAuthStatus() === true && (this.navController.navigateForward("discover"));
+      this.navController.navigateForward("login");
+      // this.changeAuthStatus();
+      // this.stateService.getAuthStatus() === true && (this.navController.navigateForward("discover"));
       // Clear Input Fields
       this.fname = '';
       this.lname = '';

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { Platform } from '@ionic/angular';
 import { StateService } from '../shared/state.service';
@@ -12,13 +12,11 @@ interface CardData {
   templateUrl: './discover-content.page.html',
   styleUrls: ['./discover-content.page.scss'],
 })
-export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
+export class DiscoverContentPage implements OnInit, OnDestroy {
   cardData: CardData = { data: [] };
-  progress = 10
   currentMode!: string;
   displayFab!: boolean;
   displaySideBar!: boolean; 
-  mediaQuery!: MediaQueryList;
   constructor(private location: Location, private platform: Platform, private stateService: StateService) { }
   
   getData = async (): Promise<void> => {
@@ -45,28 +43,13 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
 
   // For small screen size only
   showSideBar = () => {
-    const sidebar = document.getElementById("sidebar");
-    const content = document.getElementById("content");
-    this.mediaQuery = window.matchMedia("(max-width: 767px)");
-
-    // this.displaySideBar = this.displaySideBar === true ? false : true
-    // this.mediaQuery.matches ? (this.displaySideBar = this.displaySideBar === true ? false : true) : (
-    //   this.displaySideBar = true
-    // );
-
-    if (this.displaySideBar) {
-      // sidebar != null && (sidebar.style.left = "0");
-      sidebar?.classList.toggle("visible");
-      // content != null && (content.style.marginLeft= "260px");
+    if (this.platform.width() < 768) {
+      this.displaySideBar = !this.displaySideBar;
     } else {
-      // sidebar != null && (sidebar.style.left = "-250px");
-      sidebar?.classList.toggle("invisible");
-      // content != null && (content.style.marginLeft= "0");
+      this.displaySideBar = false;
     }
-
-    // Fab button
-    this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
   }
+  
   ngOnInit() {
     // Subscribe
     this.stateService.currentMode$.subscribe((currentMode) => {
@@ -75,33 +58,17 @@ export class DiscoverContentPage implements OnInit, AfterViewInit, OnDestroy {
     this.getData();
     
     // Fab button
-    this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
+    this.displayFab = this.platform.width() < 768;
+    window.addEventListener("resize", () => {
+      this.displayFab = this.platform.width() < 768;
+      this.platform.width() >= 768 && (this.displaySideBar = false); 
+    });
   }
-  
-  ngAfterViewInit() {
-    // Sidebar & Content
-    // this.mediaQuery = window.matchMedia("(max-width: 767px)");
-    // this.mediaQuery.matches ? this.displaySideBar = true : this.displaySideBar = false;
-    // const sidebar = document.getElementById("sidebar");
-    // const content = document.getElementById("content");
-    // this.mediaQuery.matches ? (this.displaySideBar = this.displaySideBar === true ? false : true) : (
-    //   this.displaySideBar = true
-    // );
 
-    // if (this.displaySideBar) {
-    //   sidebar != null && (sidebar.style.left = "0");
-    //   content != null && (content.style.marginLeft= "260px");
-    // } else {
-    //   sidebar != null && (sidebar.style.left = "-250px");
-    //   content != null && (content.style.marginLeft= "0");
-    // }
-
-    // Fab button
-    // this.platform.width() < 768 ? this.displayFab = true : this.displayFab = false;
-
-    // window.addEventListener("resize", this.showSideBar);
-  }
   ngOnDestroy() {
-    window.removeEventListener("resize", this.showSideBar);
+    window.removeEventListener("resize", () => {
+      this.displayFab = this.platform.width() < 768;
+      this.platform.width() >= 768 && (this.displaySideBar = false); 
+    });
   }
 }

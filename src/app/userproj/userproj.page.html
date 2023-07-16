@@ -3,7 +3,7 @@
     <ng-container *ngIf="cardData.data.length > 0; else loadingDisplay">
       <ion-grid>
         <ion-row>
-          <ion-col size="11" size-sm="4" size-lg="3" *ngFor="let item of cardData.data">
+          <ion-col size="12" size-sm="6" size-md="4" size-lg="3" *ngFor="let item of cardData.data">
             <ion-card [color]="currentMode" routerLink="{{ item.id }}">
               <div class="image-container" [style.background-image]="'url('+ item.project_image +')'"></div>
               <ion-card-header>

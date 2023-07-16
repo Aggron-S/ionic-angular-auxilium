@@ -4,24 +4,17 @@
   height: 100%;
 }
 
-.pad-container {
-  padding: 0 20px;
+form {
+  height: 100%;
 }
 
-.banner {
-  height: 90px;
-  margin: 15px 0;
+.pad-container {
+  padding: 0 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  font-size: 50px;
-  padding: 10px;
-  background: rgb(102, 153, 153);
-  background: linear-gradient(
-    273deg,
-    rgba(102, 153, 153, 1) 0%,
-    rgba(255, 102, 51, 1) 100%
-  );
-  color: white;
+  justify-content: center;
+  height: 100%;
 }
 
 .flex {
@@ -34,7 +27,7 @@
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
-
+  width: 100%;
   .left,
   .center,
   .right {
@@ -73,7 +66,6 @@
 
   .center {
     width: 361px;
-
     ion-card {
       background: rgb(102, 153, 153);
       background: linear-gradient(
@@ -137,6 +129,12 @@
   .right {
     width: 744px;
 
+    ion-textarea {
+      border: 2px solid white;
+      --highlight-color-invalid: none;
+      --highlight-color-valid: none;
+    }
+
     ion-card {
       background: rgb(102, 153, 153);
       background: linear-gradient(
@@ -144,10 +142,6 @@
         rgba(102, 153, 153, 1) 32%,
         rgba(255, 102, 51, 1) 150%
       );
-    }
-
-    .big {
-      height: 60px;
     }
 
     .funding {
@@ -208,18 +202,32 @@ ion-card-title {
 }
 
 input {
-  background-color: transparent;
+  background-color: white;
   border: 2px solid white;
   border-radius: 8px;
   height: 25px;
-  color: white;
+  color: black;
   text-indent: 10px;
   font-size: 15px;
   font-weight: 200;
+  outline: none;
+  margin: 3px 0;
 }
-
+ion-textarea {
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  height: 25px;
+  color: black;
+  text-indent: 10px;
+  font-size: 15px;
+  font-weight: 200;
+  outline: none;
+  margin: 3px 0;
+}
 ion-label {
   text-indent: 10px;
+  margin: 5px 0;
 }
 
 .transparent-card {
@@ -232,8 +240,9 @@ ion-label {
   display: flex;
   justify-content: flex-end;
   margin: 20px 0 0 0;
+  width: 100%;
 
-  div {
+  button {
     background-color: rgba(102, 153, 153, 1);
     color: white;
     border-radius: 5px;
@@ -242,16 +251,84 @@ ion-label {
     cursor: pointer;
     font-size: 15px;
   }
+
+  button:disabled {
+    background-color: gray;
+  }
+}
+
+@media (min-width: 1430px) {
+  .btn {
+    display: none;
+  }
+
+  .for-mobile {
+    width: 0;
+    height: 0;
+  }
 }
 
 @media (max-width: 1430px) {
   .wrapper {
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+
+    .left,
+    .center,
+    .right {
+      width: 350px;
+    }
+  }
+
+  .for-mobile {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    justify-content: space-between;
+  }
+
+  .flex-end {
+    justify-content: flex-end;
+  }
+
+  .btn {
+    background-color: rgba(102, 153, 153, 1);
+    color: white;
+    border-radius: 5px;
+    padding: 5px 25px;
+    font-weight: 200;
+    cursor: pointer;
+    font-size: 15px;
   }
 
   .submit-btn {
-    justify-content: center;
-    margin-bottom: 70px;
+    display: none;
+  }
+
+  .social-media {
+    width: 300px;
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      div {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      input {
+        width: 230px;
+        border-radius: 5px;
+        height: 20px;
+      }
+    }
+  }
+
+  .disabled-btn:disabled {
+    background-color: gray;
   }
 }
