@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "add": "ionic capacitor add android",
     "build_android": "ionic capacitor build android",
-    "run_android": "ionic capacitor run android"
+    "run_android": "ionic capacitor run android",
+    "http_server": "http-server"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +33,7 @@
     "@capacitor/status-bar": "5.0.5",
     "@ionic/angular": "^7.0.0",
     "autoprefixer": "^10.4.14",
+    "http-server": "^14.1.1",
     "ionicons": "^7.0.0",
     "postcss": "^8.4.24",
     "rxjs": "~7.8.0",
