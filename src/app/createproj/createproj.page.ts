@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './createproj.page.html',
   styleUrls: ['./createproj.page.scss'],
 })
-export class CreateprojPage implements OnInit {
+export class CreateprojPage implements OnInit, OnDestroy {
   hideContainer!: boolean;
   currentStep = 0;
   name!:string
@@ -32,7 +32,7 @@ export class CreateprojPage implements OnInit {
   constructor(private navController: NavController) { }
 
   submit(){
-
+    this.navController.navigateForward("userproj");
   }
 
   previous(){
@@ -48,14 +48,21 @@ export class CreateprojPage implements OnInit {
   }
 
   ngOnInit() {
-    this.currentStep = 1
+    this.currentStep = 1;
     const mediaQuery = window.matchMedia('(min-width: 1430px)');
     this.hideContainer = mediaQuery.matches;
 
     mediaQuery.addEventListener('change', (event) => {
       // Update the hideContainer property based on the media query
       this.hideContainer = event.matches;
-      this.currentStep = 1
+      this.currentStep = 1;
+    });
+  }
+
+  ngOnDestroy() {
+    window.matchMedia('(min-width: 1430px)').removeEventListener('change', (event) => {
+      this.hideContainer = event.matches;
+      this.currentStep = 1;
     });
   }
 }
