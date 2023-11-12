@@ -47,8 +47,7 @@ const routes: Routes = [
     path: 'userproj-content',
     loadChildren: () => import('./userproj-content/userproj-content.module').then( m => m.UserprojContentPageModule)
   },
-
-
+  
 ];
 
 @NgModule({
